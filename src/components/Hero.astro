@@ -1,0 +1,75 @@
+---
+// src/components/Hero.astro
+import {Image} from 'astro:assets';
+import heroImage from '../assets/images/hero.jpg';
+---
+
+<header class="hero-section">
+  <div class="grid">
+    <!-- Left Column: Copy & Actions -->
+    <div class="hero-content">
+      <h1>Build something beautiful with Astro & Pico CSS</h1>
+      <p class="hero-subtitle">
+        A minimalist, semantic frontend setup that stays completely out of your way. 
+      </p>
+      <div class="hero-actions">
+        <a href="#get-started" role="button">Get Started</a>
+        <a href="#docs" role="button" class="outline secondary">Documentation</a>
+      </div>
+    </div>
+
+    <!-- Right Column: Visual Placeholder -->
+    <div class="hero-visual">
+      <article class="hero-card">
+        <!-- Replace this placeholder with an <img> or graphic later -->
+        <div class="placeholder-graphic">
+         <Image src={heroImage} alt="Placeholder Graphic" loading="eager"
+          class="hero-img" />
+        </div>
+      </article>
+    </div>
+  </div>
+</header>
+
+<style>
+  .hero-section {
+    padding: var(--block-spacing-vertical) 0;
+    margin-bottom: 60px;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--muted-text-color);
+    margin-bottom: var(--spacing);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--spacing);
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+
+
+  /* Right column styling using Pico variables */
+  .hero-card {
+    margin: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card-background-color);
+    border: 1px solid var(--card-border-color);
+    min-height: 300px;
+  }
+
+  .placeholder-graphic {
+    opacity: 0.6;
+  }
+</style>

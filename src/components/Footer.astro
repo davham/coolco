@@ -1,0 +1,150 @@
+---
+// src/components/Footer.astro
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="grid">
+      <!-- Column 1: Brand & Description -->
+      <div class="footer-brand">
+        <a href="/" class="footer-logo"><strong>My Brand</strong></a>
+        <p class="footer-desc">
+          Building fast, beautiful, and accessible web experiences using Astro and Pico CSS.
+        </p>
+      </div>
+
+      <!-- Column 2: Product Links -->
+      <div class="footer-links-col">
+        <h6>Product</h6>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#changelog">Changelog</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Company Links -->
+      <div class="footer-links-col">
+        <h6>Company</h6>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#careers">Careers</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Legal Links -->
+      <div class="footer-links-col">
+        <h6>Legal</h6>
+        <ul>
+          <li><a href="#privacy">Privacy Policy</a></li>
+          <li><a href="#terms">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright Bar -->
+    <div class="footer-bottom">
+      <p>&copy; {currentYear} My Brand. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://github.com" aria-label="GitHub">GitHub</a>
+        <a href="https://twitter.com" aria-label="Twitter">Twitter</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: calc(var(--pico-block-spacing-vertical) * 2);
+    padding: var(--pico-block-spacing-vertical) 0;
+    border-top: 1px solid color-mix(in srgb, var(--pico-muted-border-color) 40%, transparent);
+    background: color-mix(in srgb, var(--pico-card-background-color) 40%, transparent);
+  }
+
+  .footer-logo {
+    font-size: 1.25rem;
+    text-decoration: none;
+    color: var(--pico-color);
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-desc {
+    font-size: 0.9rem;
+    color: var(--pico-muted-color);
+    max-width: 300px;
+  }
+
+  .footer-links-col h6 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    color: var(--pico-color);
+  }
+
+  .footer-links-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-links-col li {
+    margin-bottom: 0.5rem;
+    padding: 0;
+  }
+
+  .footer-links-col a {
+    font-size: 0.9rem;
+    color: var(--pico-muted-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-links-col a:hover {
+    color: var(--pico-primary);
+  }
+
+  /* Bottom Copyright Bar styling */
+  .footer-bottom {
+    margin-top: var(--pico-block-spacing-vertical);
+    padding-top: var(--pico-spacing);
+    border-top: 1px solid color-mix(in srgb, var(--pico-muted-border-color) 20%, transparent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--pico-spacing);
+  }
+
+  .footer-bottom p {
+    font-size: 0.85rem;
+    color: var(--pico-muted-color);
+    margin-bottom: 0;
+  }
+
+  .social-links {
+    display: flex;
+    gap: var(--pico-spacing);
+  }
+
+  .social-links a {
+    font-size: 0.85rem;
+    color: var(--pico-muted-color);
+    text-decoration: none;
+  }
+
+  .social-links a:hover {
+    color: var(--pico-primary);
+  }
+
+  /* Responsive stacking logic */
+  @media (max-width: 768px) {
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

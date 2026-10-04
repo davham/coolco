@@ -1,17 +1,32 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  
+  <Hero />
+	<Features />
+
+	<!-- 2-Column Grid -->
+  <section class="grid">
+    <div>
+      <h2>Column One</h2>
+      <p>Pico builds column rows evenly.</p>
+    </div>
+    <div>
+      <h2>Column Two</h2>
+      <p>No grid template fractions required.</p>
+    </div>
+  </section>
+	
+
+	<!-- Full-Width Section -->
+	<section>
+		<h2>Full Width</h2>
+		<p>Sections are full width by default.</p>
+		<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem ducimus vero architecto, ut aspernatur culpa pariatur expedita fugiat. Quam ut dolor cupiditate sunt labore odio incidunt in laboriosam pariatur, repudiandae sint tempora fuga id, aut debitis nemo nulla. Aliquam molestias maxime nesciunt, placeat esse possimus quibusdam fugit corporis eos est, temporibus porro ipsam optio ab ipsa dolor quis repudiandae totam nam animi deserunt quidem reiciendis! Laudantium nisi, quas aperiam repellendus pariatur itaque labore, quisquam qui harum sint distinctio in? Repellat blanditiis dolorum ad reiciendis ea eius delectus dolore, perspiciatis, itaque voluptates deserunt nulla sint labore. At, distinctio harum quod maxime repellendus beatae quisquam illo consequatur sed iste adipisci cum ad in alias aspernatur accusamus natus, quidem saepe, minus nostrum suscipit veniam aliquam mollitia. Culpa reiciendis ipsam cupiditate repellat? Et architecto necessitatibus ratione veniam ullam magnam id quibusdam tenetur qui iure quia quasi excepturi numquam omnis, quis accusamus odio quisquam! Delectus beatae quia dolor est molestias modi odit hic cupiditate, fugit at dolorem aliquam provident! Dignissimos fugit id dolore at, eius laborum tempore natus molestiae. Reiciendis provident accusamus similique repellat dolore porro dolores deserunt voluptates quos ullam quae qui voluptas eum aliquam blanditiis nesciunt, quidem ipsam vitae recusandae tempore non. Neque.</p>
+	</section>	
+</BaseLayout>
+

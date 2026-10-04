@@ -1,0 +1,138 @@
+---
+// src/pages/about.astro
+import Layout from '../layouts/BaseLayout.astro';
+---
+
+<Layout>
+  <section class="about-page">
+    <!-- Header Hero Banner -->
+    <header class="about-header text-center">
+      <h1>Our Mission & Vision</h1>
+      <p class="subtitle">Building a simpler, faster, and more beautiful web environment.</p>
+    </header>
+
+    <!-- Core Intro: 2-Column Grid -->
+    <div class="grid layout-grid">
+      <div class="intro-content">
+        <h2>Who We Are</h2>
+        <p>
+          We are a decentralized team of designers, engineers, and creators passionate about minimalist web architecture. We believe that building digital interfaces shouldn't require hundreds of megabytes of nested runtime JavaScript or highly convoluted tooling setups.
+        </p>
+        <p>
+          By leveraging the zero-JS-by-default runtime footprint of **Astro** alongside the pure semantic HTML structural engine of **Pico CSS**, we deliver production environments that load instantaneously, look phenomenal, and prioritize human accessibility above all else.
+        </p>
+      </div>
+      
+      <!-- Visual Accent Block -->
+      <div class="intro-graphic">
+        <article class="accent-card">
+          <div class="stat-box">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Semantic Layout Core</span>
+          </div>
+          <hr />
+          <div class="stat-box">
+            <span class="stat-number">0ms</span>
+            <span class="stat-label">Bloat Guarantee</span>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Values Grid -->
+    <section class="values-section">
+      <div class="text-center">
+        <h2>Our Core Pillars</h2>
+      </div>
+      
+      <div class="grid functional-grid">
+        <article class="value-card">
+          <h4>Efficiency</h4>
+          <p>We eliminate unnecessary structural layers to ship lightweight code that executes instantly on low-bandwidth networks.</p>
+        </article>
+        
+        <article class="value-card">
+          <h4>Accessibility</h4>
+          <p>By writing standard HTML markup elements, your template scales perfectly with native text readers and screen tools.</p>
+        </article>
+        
+        <article class="value-card">
+          <h4>Design Clarity</h4>
+          <p>Visual simplicity provides content breathing room, driving user focus exactly where it matters most.</p>
+        </article>
+      </div>
+    </section>
+  </section>
+</Layout>
+
+<style>
+  .about-page {
+    padding: var(--pico-block-spacing-vertical) 0;
+  }
+
+  .text-center {
+    text-align: center;
+    margin-bottom: calc(var(--pico-block-spacing-vertical) * 1.5);
+  }
+
+  .subtitle {
+    color: var(--pico-muted-color);
+    font-size: 1.25rem;
+  }
+
+  .layout-grid {
+    align-items: center;
+    margin-bottom: calc(var(--pico-block-spacing-vertical) * 2);
+  }
+
+  /* Framing elements matching your palette borders */
+  .accent-card {
+    margin: 0;
+    background: color-mix(in srgb, var(--pico-card-background-color) 40%, transparent);
+    border: 1px solid color-mix(in srgb, var(--pico-muted-border-color) 40%, transparent);
+    text-align: center;
+    padding: calc(var(--pico-spacing) * 2);
+  }
+
+  .stat-box {
+    padding: 0.5rem 0;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--pico-primary);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    color: var(--pico-muted-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .values-section {
+    padding-top: var(--pico-block-spacing-vertical);
+    border-top: 1px solid color-mix(in srgb, var(--pico-muted-border-color) 20%, transparent);
+  }
+
+  .value-card {
+    margin: 0;
+    height: 100%;
+    border: 1px solid color-mix(in srgb, var(--pico-muted-border-color) 30%, transparent);
+  }
+
+  .value-card h4 {
+    color: var(--pico-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .value-card p {
+    font-size: 0.95rem;
+    color: var(--pico-muted-color);
+    margin-bottom: 0;
+  }
+</style>

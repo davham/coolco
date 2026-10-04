@@ -1,0 +1,92 @@
+---
+// src/components/Features.astro
+
+// Define the feature list structure
+const features = [
+  {
+    icon: "🚀",
+    title: "Blazing Fast Performance",
+    description: "Built on top of Astro's island architecture. Zero client-side JavaScript by default ensures immediate load times."
+  },
+  {
+    icon: "🎨",
+    title: "Custom Palette Harmony",
+    description: "Fully styled around your custom periwinkle, lavender, and dark void colors with automatic light and dark mode adaptation."
+  },
+  {
+    icon: "📱",
+    title: "Fully Responsive Layout",
+    description: "No complex grid layouts or utility classes needed. Semantics natively reshape to fit tablets and phones perfectly."
+  }
+];
+---
+
+<section id="features" class="features-section">
+  <div class="container text-center">
+    <h2>Why Choose Our Platform?</h2>
+    <p class="section-subtitle">A minimal framework approach to building the modern web layout.</p>
+  </div>
+
+  <!-- Pico's Native Multi-Column Grid Layout Wrapper -->
+  <div class="grid">
+    {features.map((feature) => (
+      <article class="feature-card">
+        <div class="feature-icon">{feature.icon}</div>
+        <h3>{feature.title}</h3>
+        <p>{feature.description}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .features-section {
+    padding: var(--pico-block-spacing-vertical) 0;
+  }
+
+  .text-center {
+    text-align: center;
+    margin-bottom: calc(var(--pico-block-spacing-vertical) * 1.5);
+  }
+
+  .section-subtitle {
+    color: var(--pico-muted-color);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Feature Cards Layout using your palette borders & backgrounds */
+  .feature-card {
+    margin: 0; /* Clear Pico default article baseline margins */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid color-mix(in srgb, var(--pico-muted-border-color) 40%, transparent);
+  }
+
+  /* Subtle interactive feedback */
+  .feature-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--pico-primary);
+    box-shadow: var(--pico-card-box-shadow);
+  }
+
+  .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--pico-spacing);
+  }
+
+  .feature-card h3 {
+    font-size: 1.35rem;
+    margin-bottom: calc(var(--pico-spacing) * 0.5);
+  }
+
+  .feature-card p {
+    font-size: 0.95rem;
+    color: var(--pico-muted-color);
+    margin-bottom: 0;
+    line-height: 1.6;
+  }
+</style>

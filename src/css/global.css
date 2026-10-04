@@ -1,0 +1,68 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+
+html,
+:root {
+	--pico-font-family: 'Poppins', sans-serif !important;
+}
+
+/* ─── 1. DEFAULT SYSTEM PREFERENCE / LIGHT MODE ─── */
+html,
+html[data-theme='light'],
+:root {
+	--pico-primary: #9395d3 !important; /* Lavender Blue */
+	--pico-primary-hover: #b3b7ee !important; /* Periwinkle */
+	--pico-primary-background: #9395d3 !important;
+
+	--pico-background-color: #fbf9ff !important; /* Snow White */
+	--pico-color: #000807 !important; /* Dark Void */
+	--pico-muted-color: #a2a3bb !important; /* Ghost Gray */
+	--pico-muted-border-color: #b3b7ee !important;
+	--pico-card-background-color: #ffffff !important;
+}
+
+button:hover,
+[role='button']:hover {
+	background-color: #6935b3;
+}
+
+/* ─── 2. AUTOMATIC SYSTEM DARK MODE ─── */
+/* This listens directly to your computer's OS or browser theme settings */
+@media (prefers-color-scheme: dark) {
+	html:not([data-theme='light']),
+	:root:not([data-theme='light']) {
+		--pico-primary: #b3b7ee !important; /* Periwinkle */
+		--pico-primary-hover: #9395d3 !important; /* Lavender Blue */
+		--pico-background-color: #000807 !important; /* Dark Void */
+		--pico-color: #fbf9ff !important; /* Snow White */
+		--pico-muted-color: #a2a3bb !important; /* Ghost Gray */
+		--pico-card-background-color: #111918 !important;
+	}
+}
+
+/* ─── 3. MANUAL DARK MODE OVERRIDE ─── */
+/* Keeps manual switches working if you add a theme toggle button later */
+html[data-theme='dark'] {
+	--pico-primary: #b3b7ee !important;
+	--pico-primary-hover: #9395d3 !important;
+	--pico-background-color: #000807 !important;
+	--pico-color: #fbf9ff !important;
+	--pico-muted-color: #a2a3bb !important;
+	--pico-card-background-color: #111918 !important;
+}
+
+/* src/css/global.css */
+
+/* Custom grid stacking override */
+@media (max-width: 968px) {
+	/* Target all children inside a grid wrapper */
+	.grid > * {
+		flex-basis: 100% !important;
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+
+	/* Optional: Add vertical breathing room between your features cards when stacked */
+	.grid > *:not(:last-child) {
+		margin-bottom: var(--pico-block-spacing-vertical, 2rem) !important;
+	}
+}

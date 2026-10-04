@@ -1,0 +1,71 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import Layout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  
+  // Explicitly type 'entry' here to clear the implicit any warning
+  return blogEntries.map((entry: CollectionEntry<'blog'>) => ({
+    params: { slug: entry.id }, 
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout>
+  <article class="single-post">
+    <header>
+      <a href="/articles" class="back-link">&larr; Back to articles</a>
+      <h1>{entry.data.title}</h1>
+      <div class="post-meta">
+        <span>By {entry.data.author}</span> &bull; 
+        <time datetime={entry.data.pubDate.toISOString()}>
+          {entry.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+      </div>
+    </header>
+
+    <!-- Clean, semantic markdown container body -->
+    <div class="post-body">
+      <Content />
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .single-post {
+    max-width: 800px;
+    margin: var(--pico-block-spacing-vertical) auto;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: var(--pico-spacing);
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+
+  .post-meta {
+    color: var(--pico-muted-color);
+    font-size: 0.95rem;
+    margin-bottom: var(--pico-block-spacing-vertical);
+  }
+
+  .post-body {
+    line-height: 1.8;
+  }
+</style>
+

@@ -1,0 +1,104 @@
+---
+// src/pages/articles.astro
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '../layouts/BaseLayout.astro';
+
+const posts = await getCollection('blog');
+
+const sortedPosts = posts.sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => {
+  return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+});
+---
+
+<Layout>
+  <section class="articles-archive">
+    <header class="archive-header">
+      <h1>Articles & Insights</h1>
+      <p class="subtitle">Read our latest documentation logs and announcements.</p>
+    </header>
+
+    <div class="grid">
+      <!-- Explicitly type the 'post' parameter here -->
+      {sortedPosts.map((post: CollectionEntry<'blog'>) => (
+        <article class="archive-card">
+          <header class="card-meta">
+            <time datetime={post.data.pubDate.toISOString()}>
+              {post.data.pubDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </time>
+          </header>
+          
+          <h3>{post.data.title}</h3>
+          <p>{post.data.description}</p>
+          
+          <footer>
+            <!-- In Astro's modern Content Layer API, use post.id instead of post.slug -->
+            <a href={`/articles/${post.id}`} role="button" class="outline">
+              Read Article
+            </a>
+          </footer>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<!-- Keep your existing styles beneath this -->
+
+
+<style>
+  .articles-archive {
+    padding: var(--pico-block-spacing-vertical) 0;
+  }
+
+  .archive-header {
+    margin-bottom: calc(var(--pico-block-spacing-vertical) * 1.5);
+    text-align: center;
+  }
+
+  .subtitle {
+    color: var(--pico-muted-color);
+    font-size: 1.2rem;
+  }
+
+  /* Matching your existing features card visual design rules */
+  .archive-card {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    border: 1px solid color-mix(in srgb, var(--pico-muted-border-color) 40%, transparent);
+  }
+
+  .card-meta time {
+    font-size: 0.85rem;
+    color: var(--pico-muted-color);
+  }
+
+  .archive-card h3 {
+    font-size: 1.4rem;
+    margin: 0.5rem 0;
+  }
+
+  .archive-card p {
+    font-size: 0.95rem;
+    color: var(--pico-muted-color);
+    flex-grow: 1; /* Pushes the button footer cleanly to the bottom */
+  }
+
+  .archive-card footer {
+    background: transparent;
+    padding: 0;
+    border-top: none;
+    margin-top: var(--pico-spacing);
+  }
+
+  .archive-card footer a {
+    width: 100%;
+    text-align: center;
+  }
+</style>

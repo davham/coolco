@@ -1,0 +1,27 @@
+---
+// src/layouts/Layout.astro
+import '@picocss/pico/css/pico.min.css';
+import '../css/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Astro + Pico CSS</title>
+  </head>
+  <body>
+    <!-- Standard Top Navigation -->
+    <Nav />
+
+    <!-- Standard Layout Container -->
+    <main class="container">
+      <slot /> <!-- Astro injects page content here -->
+    </main>
+    <Footer /> 
+  </body>
+</html>

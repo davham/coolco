@@ -1,0 +1,131 @@
+<div class="nav-container">
+  <nav class="container nav-wrapper">
+    <ul>
+      <li>
+        <a href="/" class="brand-link">
+          <strong>Cool Co.</strong>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Burger Button (Mobile) -->
+    <ul class="mobile-toggle-wrapper">
+      <li>
+        <button 
+          class="outline secondary mobile-menu-toggle" 
+          aria-label="Toggle Navigation Menu"
+          aria-expanded="false"
+        >
+          <svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="menu-icon"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+        </button>
+      </li>
+    </ul>
+
+    <!-- Main Nav Links -->
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/articles">Articles</a></li>
+      <li><a href="/about">About</a></li>
+    
+    </ul>
+  </nav>
+</div>
+<!-- 3. Navigation Styles & Responsive Overrides -->
+<style>
+  /* 1. Viewport Sticky Pinning Engine */
+  .nav-container {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    
+    /* Using a semi-transparent variable alpha value of your Pico card background color */
+    background: color-mix(in srgb, var(--pico-background-color) 85%, transparent);
+    
+    /* Modern backdrop blur effect */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    /* Subtle separation border */
+    border-bottom: 1px solid color-mix(in srgb, var(--pico-muted-border-color) 30%, transparent);
+  }
+
+  .nav-wrapper {
+    position: relative;
+    /* Adjust height to your liking, removing Pico's aggressive default nav margins */
+    margin-bottom: 0 !important; 
+    padding: 0.5rem 0;
+  }
+
+  .brand-link {
+    text-decoration: none;
+    color: var(--pico-color);
+  }
+
+  .mobile-toggle-wrapper {
+    display: none;
+  }
+
+  /* 2. Responsive Mobile Overlay Rules */
+  @media (max-width: 768px) {
+    .mobile-toggle-wrapper {
+      display: block;
+    }
+
+    .mobile-menu-toggle {
+      padding: 0.5rem;
+      margin-bottom: 0;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      /* Drops directly down from the sticky nav frame */
+      top: 100%; 
+      left: var(--pico-spacing);
+      right: var(--pico-spacing);
+      background: var(--pico-card-background-color);
+      border: 1px solid var(--pico-muted-border-color);
+      border-radius: var(--pico-border-radius);
+      padding: var(--pico-spacing);
+      box-shadow: var(--pico-card-box-shadow);
+    }
+
+    .nav-links li {
+      width: 100%;
+      padding: 0.5rem 0;
+    }
+
+    .nav-links li a {
+      display: block;
+      width: 100%;
+    }
+
+    .nav-links.is-active {
+      display: flex;
+    }
+  }
+</style>
+
+<!-- 5. Interactive JavaScript (Bundled cleanly by Astro) -->
+<script>
+  const toggleBtn = document.querySelector('.mobile-menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (toggleBtn && navLinks) {
+    toggleBtn.addEventListener('click', () => {
+      const isActive = navLinks.classList.toggle('is-active');
+      toggleBtn.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+    });
+
+    // Close the menu automatically when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('is-active');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
