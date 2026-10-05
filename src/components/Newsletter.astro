@@ -1,0 +1,151 @@
+---
+// src/components/Newsletter.astro
+---
+
+<section id="newsletter" class="newsletter-section">
+  <article class="newsletter-card">
+    <div class="newsletter-header text-center">
+      <h2>Stay in the Loop</h2>
+      <p class="subtitle">Join our monthly newsletter for engineering updates, articles, and minimalist design systems tips.</p>
+    </div>
+
+    <!-- Semantic Pico CSS Form Layout -->
+    <form class="newsletter-form" id="signup-form">
+      <div class="grid form-grid">
+        <!-- Input fields are implicitly stacked and spaced by Pico -->
+        <label for="first-name">
+          First Name
+          <input 
+            type="text" 
+            id="first-name" 
+            name="firstName" 
+            placeholder="David" 
+            required 
+          />
+        </label>
+
+        <label for="email">
+          Email Address
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="david@example.com" 
+            required 
+          />
+        </label>
+      </div>
+
+      <!-- Action Submission Button -->
+      <div class="form-actions">
+        <button type="submit" id="submit-btn">
+          Subscribe to Newsletter
+        </button>
+      </div>
+    </form>
+
+    <!-- Interactive success feedback notification message container -->
+    <div id="form-feedback" class="form-message" aria-hidden="true" style="display: none;">
+      <ins><strong>✓ Success!</strong> Thank you for subscribing. Please check your inbox to confirm your email.</ins>
+    </div>
+  </article>
+</section>
+
+<style>
+  .newsletter-section {
+    padding: var(--pico-block-spacing-vertical) 0;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .newsletter-card {
+    margin: 0;
+    padding: calc(var(--pico-block-spacing-vertical) * 1) calc(var(--pico-spacing) * 2);
+    border: 1px solid color-mix(in srgb, var(--pico-muted-border-color) 40%, transparent);
+    background: color-mix(in srgb, var(--pico-card-background-color) 30%, transparent);
+    box-shadow: var(--pico-card-box-shadow);
+  }
+
+  .text-center {
+    text-align: center;
+    margin-bottom: var(--pico-block-spacing-vertical);
+  }
+
+  .subtitle {
+    color: var(--pico-muted-color);
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Structural label adjustment override */
+  .form-grid label {
+    font-weight: 600;
+    color: var(--pico-color);
+  }
+
+  .form-actions {
+    margin-top: var(--pico-spacing);
+  }
+
+  .form-actions button {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  /* Style for validation feedback logs */
+  .form-message {
+    margin-top: var(--pico-spacing);
+    padding: var(--pico-spacing);
+    border-radius: var(--pico-border-radius);
+    text-align: center;
+  }
+  
+  .form-message ins {
+    text-decoration: none;
+    color: #2e7d32; /* Safe accessible semantic green text tone */
+  }
+</style>
+
+<!-- Standard client-side submission script compiled seamlessly by Astro -->
+<script>
+  const form = document.getElementById('signup-form') as HTMLFormElement;
+  const feedback = document.getElementById('form-feedback');
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+
+  if (form && feedback && submitBtn) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault(); // Prevent standard page refreshes
+      
+      // Update button visual interface state natively using Pico's dynamic attributes
+      submitBtn.setAttribute('aria-busy', 'true');
+      submitBtn.disabled = true;
+
+      // Extract structural input parameters safely
+      const formData = new FormData(form);
+      const data = {
+        firstName: formData.get('firstName'),
+        email: formData.get('email')
+      };
+
+      try {
+        // --- CHOOSE YOUR BACKEND INTEGRATION ROUTE HERE ---
+        // Option A: Wire it to an Astro API Route endpoint (e.g., fetch('/api/subscribe', ...))
+        // Option B: Post directly to external CRM APIs (Formspree, Buttondown, Resend, Loops)
+        
+        // Simulating standard API response timing threshold delays
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        // Display interactive structural element feedbacks
+        form.style.display = 'none';
+        feedback.style.display = 'block';
+        feedback.setAttribute('aria-hidden', 'false');
+
+      } catch (error) {
+        console.error('Subscription error context payload capture log:', error);
+        submitBtn.removeAttribute('aria-busy');
+        submitBtn.disabled = false;
+      }
+    });
+  }
+</script>
